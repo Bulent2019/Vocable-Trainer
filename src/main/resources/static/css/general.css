@@ -1,0 +1,50 @@
+h1{
+	padding-left: 10px;
+	padding-bottom: 20px;
+}
+
+.dit {
+	color: white;
+	background-color: green;
+}
+
+.add {
+	font-size: 20px;
+	padding-left: 5px;
+}
+
+.editButton {
+	background-color: grey;
+	color: white;
+}
+
+.addField {
+	width: 40%;
+	padding: 0px;
+	margin-left: 10px;
+}
+
+.aroundField {
+	border-radius: 5px;
+	background-color: #f2f2f2;
+	padding: 15px;
+}
+
+input {
+	font-size: 20px;
+}
+
+.col {
+	margin-top: -60px;
+	margin-left:90%;
+}
+
+.welcome {
+	margin-top: 30px;
+	margin-left: 10px;
+	margin-bottom: 50px;
+}
+.error {
+	margin-left: 50%;
+	text-align: center;
+}

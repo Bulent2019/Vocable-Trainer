@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>VocableList</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="css/general.css"  />
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+    <link type="text/css" rel="stylesheet" href="css/vocable.css" />
+    <script src ="js/extras.js"></script>
+    
+
+</head>
+<body>
+	<h1>VOCABLE LEARNER</h1>
+	<hr>
+	<div class="col">
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Sign Out" class="btn btn-sm btn-danger"/>
+		</form>
+	</div>
+	
+	
+	<div class="welcome">
+		<h3 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]</h3>
+	</div>
+	
+		<div id="freeze" class="header">
+			<label style="font-size: 22px;" for="deplist">Search: </label>
+		
+			<div class="searchWord">
+				<input id="myInput" type="text" onkeyup="myFunction()" placeholder="Search for words..." title="Type in a word">
+				
+				<a id="addButton" class = "btn-success" href="/add">New</a>
+		</div>
+	
+	</div>
+	<br>
+	
+	<!--  
+	<select style="font-size: 22px;" id="deplist" th:field="*{category}">
+				<option th:each="cate: ${categories}"
+							th:value="${cate.categoryId}"
+						th:text="${cate.name}">
+				</option>
+	-->
+				
+	<div class= "tableMain">
+	    <table id="table" class="table table-striped">
+			<tr>
+			    <th class = "rowOne">Word</th>
+			    <th class = "rowOne">Alien-Word</th>
+			    <th class = "rowOne">Picture</th>
+			    <th class = "rowOne"></th>
+			    
+			    <th class = "rowOne" sec:authorize="hasAuthority('ADMIN')"> </th>
+			    <th class = "rowOne" ></th>
+			</tr>  
+	    	<tr class="table table-striped" text-aline="center" th:each = "vocable : ${vocables}">
+	    	
+	    		<td th:text="${vocable.word}"></td>
+	    		<td th:text="${vocable.alienWord}"></td>
+	    		<td></td>
+	    		<td></td>
+	    		
+	   		<!--	<td th:text="${vocable.pictureName}"></td>
+	   			
+	   			<td th:text="${vocable.category.name}"></td>
+	    			 category.name 
+	    		-->
+	     	
+	     		<td ><a id="editButton" th:href="@{/edit/{id}(id=${vocable.id})}">Edit</a></td>
+	    		<td > <a id="deleteButton" class = "btn-danger" th:href="@{/delete/{id}(id=${vocable.id})}">Delete</a></td>
+	    	</tr>
+	     </table>
+     </div>
+         	
+</body>
+</html>

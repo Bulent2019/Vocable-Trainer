@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>VocableList</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link type="text/css" rel="stylesheet" href="css/general.css"/>
+	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
+	<link type="text/css" rel="stylesheet" href="css/vocable.css" />
+	<script src ="js/extras.js"></script>
+	<script src ="js/upload.js"></script>
+	    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jqery.min.js"></script>
+</head>
+<body>
+	<h1>New Vacable</h1>
+	
+    <div class="aroundField">
+    
+		<form class="add" th:object="${vocable}" th:action="@{/save}" action="#" method="post" enctype="multipart/form-data">
+		  <div class= "addword">
+		  	<label for="word"><b>Word</b></label>
+			<br>
+			<input class ="addField" type="text" th:field="*{word}"/>
+		  </div>
+		  
+		  <div class="addalienWord">
+		  	<label for="alienWord"><b>Alien Word</b> </label>
+		  	<br>
+   		  	<input class ="addField" type="text" th:field="*{alienWord}"/>
+		  </div >
+
+	    	<img id="output" alt="Your Picture" width="200" />
+		  
+		    <div class="upload">
+		        <label for="pictureName">Pictures: </label>
+		        <input id="fileImage" type="file" name="image" accept="image/*" />	
+		    </div>
+		        
+		  
+		  	<br>
+		  	<br>
+		  	<br>
+			<input id="safebutton" class="dit" type="submit" value="Save"></input>
+			<div style="clear: both; display: block; height: 10px;"></div>
+		</form>	
+		
+	</div> 
+	<script type="text/javascript">
+	 document.ready(function() {
+		 $('#fileImage').change(function() {
+			 showImage(this);
+		 });
+		 
+	 });
+	 
+	 function showImage(fileInput) {
+		 file = fileInput.files[0];
+		 reader = new FileReader();
+		 
+		 reader.onload = function (e) {
+			 $('#fileImage').attr('src', e.target.result);
+		 }
+		 reader.readAsDataURL(file);
+	 }
+	</script>	
+</body>
+</html>
