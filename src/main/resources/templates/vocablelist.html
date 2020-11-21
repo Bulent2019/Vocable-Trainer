@@ -1,12 +1,13 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>VocableList</title>
+    <title>Vocables</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link type="text/css" rel="stylesheet" href="css/general.css"  />
     <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
-    <link type="text/css" rel="stylesheet" href="css/vocable.css" />
+    <link type="text/css" rel="stylesheet" href="../css/vocable.css" />
     <script src ="js/extras.js"></script>
+    <script src ="../js/freeze.js"></script>
     
 
 </head>
@@ -24,14 +25,14 @@
 		<h3 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]</h3>
 	</div>
 	
-		<div id="freeze" class="header">
-			<label style="font-size: 22px;" for="deplist">Search: </label>
-		
-			<div class="searchWord">
-				<input id="myInput" type="text" onkeyup="myFunction()" placeholder="Search for words..." title="Type in a word">
-				
-				<a id="addButton" class = "btn-success" href="/add">New</a>
-		</div>
+	<div id="freeze" class="header">
+		<label style="font-size: 22px;" for="deplist">Search: </label>
+	
+		<div class="searchWord">
+			<input id="myInput" type="text" onkeyup="myFunction()" placeholder="Search for words..." title="Type in a word">
+			
+			<a id="addButton" class = "btn-success" href="/add">New</a>
+	</div>
 	
 	</div>
 	<br>
@@ -51,7 +52,6 @@
 			    <th class = "rowOne">Alien-Word</th>
 			    <th class = "rowOne">Picture</th>
 			    <th class = "rowOne"></th>
-			    
 			    <th class = "rowOne" sec:authorize="hasAuthority('ADMIN')"> </th>
 			    <th class = "rowOne" ></th>
 			</tr>  
@@ -68,11 +68,25 @@
 	    			 category.name 
 	    		-->
 	     	
-	     		<td ><a id="editButton" th:href="@{/edit/{id}(id=${vocable.id})}">Edit</a></td>
+	     		<td > <a  th:href="@{/edit/{id}(id=${vocable.id})}">Edit</a></td>
 	    		<td > <a id="deleteButton" class = "btn-danger" th:href="@{/delete/{id}(id=${vocable.id})}">Delete</a></td>
 	    	</tr>
 	     </table>
      </div>
+     <script type="text/javascript">
+     window.onscroll = function() {myFreeze()};
+
+     var header = document.getElementById("freeze");
+     var stick = header.offsetTop;
+
+     function myFreeze() {
+       if (window.pageYOffset > stick) {
+         header.classList.add("stick");
+       } else {
+         header.classList.remove("stick");
+       }
+     }
+     </script>
          	
 </body>
 </html>

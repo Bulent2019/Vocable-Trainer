@@ -85,7 +85,7 @@ public class VocableController {
 	public String editVocable(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("vocable", repo.findById(id));
 		model.addAttribute("categories", crepo.findAll());
-		return "edit";
+		return "editvocable";
 	}
 	
 	// REST --> editing vocables
