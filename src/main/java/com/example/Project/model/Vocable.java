@@ -1,12 +1,13 @@
 package com.example.Project.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 public class Vocable {
@@ -16,8 +17,7 @@ public class Vocable {
 	private String word;
 	private String alienWord;
 	
-	@Column(nullable = true, length = 64)
-	private String picture;
+//	private MultipartFile picture;
 	
 	@ManyToOne
 	
@@ -28,12 +28,12 @@ public class Vocable {
 		super();
 	}
 
-	public Vocable(String word, String alienWord, String picture) {
+	public Vocable(String word, String alienWord, Category category) {
 		super();
 		this.word = word;
 		this.alienWord = alienWord;
-		this.picture = picture;
-		
+//		this.picture = picture;
+		this.category = category;
 	}
 
 	public Long getId() {
@@ -59,14 +59,14 @@ public class Vocable {
 	public void setAlienWord(String alienWord) {
 		this.alienWord = alienWord;
 	}
-
-	public String getPicture() {
-		return picture;
-	}
-
-	public void setPicture(String picture) {
-		this.picture = picture;
-	}
+//
+//	public MultipartFile getPicture() {
+//		return picture;
+//	}
+//
+//	public void setPicture(MultipartFile picture) {
+//		this.picture = picture;
+//	}
 	
 	public Category getCategory() {
 		return category;
@@ -79,11 +79,10 @@ public class Vocable {
 	@Override
 	public String toString() {
 		if (this.category != null) {
-		return "Vocable [id=" + id + ", word=" + word + ", alienword=" + alienWord + ", picture=" + picture
-				+ "category =" + this.getCategory() + "]";
+		return "Vocable [id=" + id + ", word=" + word + ", alienword=" + alienWord + "category =" + this.getCategory() + "]";
 		} else {
-			return "Vocable [id=" + id + ", word=" + word + ", alienord=" + alienWord + ", picture=" + picture
-					+ "]";
+			return "Vocable [id=" + id + ", word=" + word + ", alienord=" + alienWord + "]";
 		}
-	}	
+	}
+
 }

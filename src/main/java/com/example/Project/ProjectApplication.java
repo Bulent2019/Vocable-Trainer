@@ -25,20 +25,32 @@ public class ProjectApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner bookDemo(VocableRepository repo, CategoryRepository crepo) {
+	public CommandLineRunner bookDemo(VocableRepository repo, CategoryRepository creposit) {
 		return (args) -> {
 			log.info("save a couple of vocables");
-//			repository.deleteAll();
-//			crepo.deleteAll();
+			repo.deleteAll();
+//			creposit.deleteAll();
 //			urepository.deleteAll();
-			crepo.save(new Category("Body"));
-			crepo.save(new Category("Food&Drinks"));
-			crepo.save(new Category("Office"));
+			creposit.save(new Category("Body"));
+			creposit.save(new Category("Food&Drinks"));
+			creposit.save(new Category("Office"));
+			creposit.save(new Category("Phrase"));
+			creposit.save(new Category("Animals"));
+			creposit.save(new Category("General"));
 			
-			repo.save(new Vocable("Beer", "Olut", "Olut"));
-			repo.save(new Vocable("Printer", "Tulostin", "Tulostin"));
-			repo.save(new Vocable("Finger", "Sormi", "Sormi"));
-			repo.save(new Vocable("Food", "Ruoka", "Ruoka"));
+			repo.save(new Vocable("Beer", "Olut", creposit.findByName("Food&Drinks").get(0)));
+			repo.save(new Vocable("Printer", "Tulostin", creposit.findByName("Office").get(0)));
+			repo.save(new Vocable("Finger", "Sormi", creposit.findByName("Body").get(0)));
+			repo.save(new Vocable("How are you?", "Mitä kuuluu?", creposit.findByName("Phrase").get(0)));
+			repo.save(new Vocable("House", "Talo", creposit.findByName("General").get(0)));
+			repo.save(new Vocable("Dog", "Koira", creposit.findByName("Animals").get(0)));
+			repo.save(new Vocable("Car", "Auto", creposit.findByName("General").get(0)));
+			repo.save(new Vocable("Head", "Pää", creposit.findByName("Body").get(0)));
+			repo.save(new Vocable("Computer", "Tietokone", creposit.findByName("Office").get(0)));
+			repo.save(new Vocable("I don't talk finnish.", "En puhu suomea.", creposit.findByName("Phrase").get(0)));
+			repo.save(new Vocable("Sausage", "Makkara", creposit.findByName("Food&Drinks").get(0)));
+			repo.save(new Vocable("Tree", "Puu", creposit.findByName("General").get(0)));
+			repo.save(new Vocable("Teacher", "Opettaja", creposit.findByName("General").get(0)));
 
 //			User user1 = new User("user", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "USER");
 //			urepository.save(user1);

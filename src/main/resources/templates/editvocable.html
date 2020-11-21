@@ -33,6 +33,17 @@
    		  	<input class ="addField" type="text" th:field="*{alienWord}"/>
 		  </div >
 
+		  <div class="addalienWord">
+		  	<label for="alienWord"><b>Category</b> </label>
+		  		<br>
+   		  	<select style="font-size: 22px;" id="deplist" th:field="*{category}">
+				<option th:each="cate: ${categories}"
+							th:value="${cate.categoryId}"
+							th:text="${cate.name}"></option>
+			</select>
+			
+		  </div >
+
 	    	<img id="output" alt="Your Picture" width="200" />
 		  
 		    <div class="upload">

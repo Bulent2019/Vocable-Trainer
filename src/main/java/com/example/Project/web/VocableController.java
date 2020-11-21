@@ -1,24 +1,22 @@
 package com.example.Project.web;
 
 import java.util.List;
-import org.springframework.web.bind.annotation.RequestParam;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 
+import com.example.Project.model.Category;
+import com.example.Project.model.CategoryRepository;
 import com.example.Project.model.Vocable;
 import com.example.Project.model.VocableRepository;
-import com.example.Project.model.CategoryRepository;
 
 @Controller
 public class VocableController {
@@ -29,12 +27,18 @@ public class VocableController {
 	@Autowired
 	private CategoryRepository crepo;
 	
-	
 //	@RequestMapping(value="/login")
 //	public String login() {
 //		return "loginpage";
 //	}
 //	
+
+    @GetMapping("/uploadStatus")
+    public String uploadStatus() {
+        return "uploadStatus";
+    }
+	
+	
 	@RequestMapping(value = {"/", "/vocablelist"})
 	public String vocableList(Model model) {
 		model.addAttribute("vocables", repo.findAll());
@@ -61,8 +65,9 @@ public class VocableController {
 	}
 	
 	@RequestMapping(value="/save", method = RequestMethod.POST)
-	public String save(Vocable vocable) {
+	public String save(Vocable vocable, Category category) {
 		repo.save(vocable);
+		crepo.save(category);
 		return "redirect:vocablelist";
 	}
 	
@@ -73,7 +78,7 @@ public class VocableController {
 		return "redirect:../vocablelist";
 	}
 	
-	// REST --> get books by id and delete
+	// REST --> get vocables by id and delete
 
 	@RequestMapping(value="/api/del/{id}", method = RequestMethod.GET)
 	public @ResponseBody List<Vocable> delVocableRest(@PathVariable("id") Long vocableId) {

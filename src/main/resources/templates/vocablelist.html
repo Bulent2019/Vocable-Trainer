@@ -27,30 +27,22 @@
 	
 	<div id="freeze" class="header">
 		<label style="font-size: 22px;" for="deplist">Search: </label>
-	
 		<div class="searchWord">
 			<input id="myInput" type="text" onkeyup="myFunction()" placeholder="Search for words..." title="Type in a word">
-			
 			<a id="addButton" class = "btn-success" href="/add">New</a>
+		</div>			
 	</div>
 	
-	</div>
 	<br>
-	
-	<!--  
-	<select style="font-size: 22px;" id="deplist" th:field="*{category}">
-				<option th:each="cate: ${categories}"
-							th:value="${cate.categoryId}"
-						th:text="${cate.name}">
-				</option>
-	-->
 				
 	<div class= "tableMain">
 	    <table id="table" class="table table-striped">
 			<tr>
 			    <th class = "rowOne">Word</th>
 			    <th class = "rowOne">Alien-Word</th>
-			    <th class = "rowOne">Picture</th>
+			    <th class = "rowOne"></th>
+			    <th class = "rowOne">Categories</th>
+			    <th class = "rowOne"></th>
 			    <th class = "rowOne"></th>
 			    <th class = "rowOne" sec:authorize="hasAuthority('ADMIN')"> </th>
 			    <th class = "rowOne" ></th>
@@ -59,6 +51,8 @@
 	    	
 	    		<td th:text="${vocable.word}"></td>
 	    		<td th:text="${vocable.alienWord}"></td>
+	    		<td></td>
+	    		<td th:text="${vocable.category.name}"></td>
 	    		<td></td>
 	    		<td></td>
 	    		
@@ -74,6 +68,8 @@
 	     </table>
      </div>
      <script type="text/javascript">
+     
+     <!-- Freezes the header if scrolling down -->
      window.onscroll = function() {myFreeze()};
 
      var header = document.getElementById("freeze");
