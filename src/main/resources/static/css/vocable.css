@@ -98,7 +98,7 @@ td {
 }
 
 #output {
-	margin-left: 45%;
+	margin-left: 42%;
 }
 
 #safebutton {
@@ -126,16 +126,3 @@ b{
 a {
 	font-size: 22px;
 }
-#editButton {
-	padding-left: 100%;
-	
-}
-
-#deleteButton {
-	margin-left: 50%;
-}
-
-
-
-
-

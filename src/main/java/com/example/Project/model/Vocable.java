@@ -1,13 +1,15 @@
 package com.example.Project.model;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
-import org.springframework.web.multipart.MultipartFile;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Vocable {
@@ -24,6 +26,7 @@ public class Vocable {
 	@JoinColumn(name = "categoryId")
 	private Category category;
 	
+	
 	public Vocable() {
 		super();
 	}
@@ -32,7 +35,6 @@ public class Vocable {
 		super();
 		this.word = word;
 		this.alienWord = alienWord;
-//		this.picture = picture;
 		this.category = category;
 	}
 
@@ -59,14 +61,6 @@ public class Vocable {
 	public void setAlienWord(String alienWord) {
 		this.alienWord = alienWord;
 	}
-//
-//	public MultipartFile getPicture() {
-//		return picture;
-//	}
-//
-//	public void setPicture(MultipartFile picture) {
-//		this.picture = picture;
-//	}
 	
 	public Category getCategory() {
 		return category;
@@ -79,7 +73,7 @@ public class Vocable {
 	@Override
 	public String toString() {
 		if (this.category != null) {
-		return "Vocable [id=" + id + ", word=" + word + ", alienword=" + alienWord + "category =" + this.getCategory() + "]";
+		return "Vocable [id=" + id + ", word=" + word + ", alienword=" + alienWord + "category =" + this.getCategory()  + "]";
 		} else {
 			return "Vocable [id=" + id + ", word=" + word + ", alienord=" + alienWord + "]";
 		}

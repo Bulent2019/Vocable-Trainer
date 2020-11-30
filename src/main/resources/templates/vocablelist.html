@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <title>Vocables</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -8,15 +8,13 @@
     <link type="text/css" rel="stylesheet" href="../css/vocable.css" />
     <script src ="js/extras.js"></script>
     <script src ="../js/freeze.js"></script>
-    
-
 </head>
 <body>
 	<h1>VOCABLE LEARNER</h1>
 	<hr>
 	<div class="col">
 		<form th:action="@{/logout}" method="post">
-			<input type="submit" value="Sign Out" class="btn btn-sm btn-danger"/>
+			<input type="submit" value="Logout" class="btn btn-sm btn-danger"/>
 		</form>
 	</div>
 	
@@ -43,8 +41,9 @@
 			    <th class = "rowOne"></th>
 			    <th class = "rowOne">Categories</th>
 			    <th class = "rowOne"></th>
+			    <th class = "rowOne">Pictures</th>
 			    <th class = "rowOne"></th>
-			    <th class = "rowOne" sec:authorize="hasAuthority('ADMIN')"> </th>
+	<!--  		<th class = "rowOne" sec:authorize="hasAuthority('ADMIN')"> </th>		 -->
 			    <th class = "rowOne" ></th>
 			</tr>  
 	    	<tr class="table table-striped" text-aline="center" th:each = "vocable : ${vocables}">
@@ -54,13 +53,10 @@
 	    		<td></td>
 	    		<td th:text="${vocable.category.name}"></td>
 	    		<td></td>
-	    		<td></td>
 	    		
-	   		<!--	<td th:text="${vocable.pictureName}"></td>
-	   			
-	   			<td th:text="${vocable.category.name}"></td>
-	    			 category.name 
-	    		-->
+	    		<td>
+	   				<img alt="Picture" width="100" />
+	   			</td>
 	     	
 	     		<td > <a  th:href="@{/edit/{id}(id=${vocable.id})}">Edit</a></td>
 	    		<td > <a id="deleteButton" class = "btn-danger" th:href="@{/delete/{id}(id=${vocable.id})}">Delete</a></td>

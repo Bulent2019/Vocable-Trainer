@@ -1,3 +1,8 @@
+// go back button signup
+function goBack() {
+	windows.history.go(-1);
+}
+
 // searching for a word
 function myFunction() {
 	  var input, filter, table, tr, td, i, txtValue;

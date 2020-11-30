@@ -1,5 +1,8 @@
 package com.example.Project;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -7,13 +10,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import com.example.Project.model.Vocable;
-import com.example.Project.model.VocableRepository;
-import com.example.Project.ProjectApplication;
 import com.example.Project.model.Category;
 import com.example.Project.model.CategoryRepository;
-//import com.example.Project.model.User;
-//import com.example.Project.model.UserRepository;
+import com.example.Project.model.User;
+import com.example.Project.model.UserRepository;
+import com.example.Project.model.Vocable;
+import com.example.Project.model.VocableRepository;
 
 
 @SpringBootApplication
@@ -25,12 +27,18 @@ public class ProjectApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner bookDemo(VocableRepository repo, CategoryRepository creposit) {
+	Path path(){
+		return Paths.get(System.getProperty("java.io.tmpdir"));
+	}
+	
+	@Bean
+	public CommandLineRunner vocableDemo(VocableRepository repo, CategoryRepository creposit, UserRepository ureposit) {
 		return (args) -> {
 			log.info("save a couple of vocables");
 			repo.deleteAll();
+			ureposit.deleteAll();
 //			creposit.deleteAll();
-//			urepository.deleteAll();
+			
 			creposit.save(new Category("Body"));
 			creposit.save(new Category("Food&Drinks"));
 			creposit.save(new Category("Office"));
@@ -52,8 +60,8 @@ public class ProjectApplication {
 			repo.save(new Vocable("Tree", "Puu", creposit.findByName("General").get(0)));
 			repo.save(new Vocable("Teacher", "Opettaja", creposit.findByName("General").get(0)));
 
-//			User user1 = new User("user", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "USER");
-//			urepository.save(user1);
+			User one = new User("user", "$2y$10$PeuqLT07hU.SpPwTDL07reNUFSl1MJYGTCQIvBmBHVHL9.Df05CWq", "ADMIN");
+			ureposit.save(one);
 
 			log.info("fetch all vocables");
 			for (Vocable vocable : repo.findAll()) {
@@ -61,5 +69,4 @@ public class ProjectApplication {
 			}
 		};
 	}
-
 }

@@ -7,16 +7,19 @@
 	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
 	<link type="text/css" rel="stylesheet" href="css/vocable.css" />
 	<link type="text/css" rel="stylesheet" href="css/main.css" />
+	<script src ="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="/jquery-3.1.1.slim.min.js"></script>
+	<script src="/tether.min.js"></script>
+	<script src="/bootstrap.min.js"></script>
 	<script src ="js/extras.js"></script>
 	<script src ="js/upload.js"></script>
-	    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jqery.min.js"></script>
 </head>
 <body>
 	<h1>New Vocable</h1>
 	
     <div class="aroundField">
     
-		<form class="add" th:object="${vocable}" th:action="@{/save}" action="#" method="post" enctype="multipart/form-data">
+		<form class="add" th:object="${vocable}" th:action="@{/save}" action="/upload" method="post" enctype="multipart/form-data">
 			<div class= "addword">
 			  	<label for="word"><b>Word</b></label>
 				<br>
@@ -32,8 +35,6 @@
 			<div class="addalienWord">
 			  	<label for="category"><b>Category</b> </label>
 			  	<br>
-			  	
-		 
 	   		  	<select style="font-size: 22px;" id="deplist" th:field="*{category}">
 					<option th:each="cate: ${categories}"
 							th:value="${cate.categoryId}"
@@ -41,40 +42,43 @@
 				</select>
 		
 			</div >
-		<!-- 
-	   		<img id="output" alt="Your Picture" width="200" />
+		
+		
+	   			<img id="output" alt="Preview" width="200" />
 
 			    <div class="upload">
-			        <label for="pictureName">Pictures: </label>
-			        <input id="fileImage" type="file" name="file" accept="image/*" />	
+			        <input id="fileImage" type="file" name="fileImage"/>
+			        <input type="hidden" th:field="*{id}"/>
 			    </div>
-		 -->
+		 
+		 
 			  	<br>
 			  	<br>
 			  	<br>
 			<a id="backButton" class = "btn-success" href="/vocablelist">Back</a>
+			
 			<input id="safebutton" class="btn-success" type="submit" value="Save"></input>
 			<div style="clear: both; display: block; height: 10px;"></div>
 		</form>	
 		
 	</div> 
 	<script type="text/javascript">
-	 document.ready(function() {
-		 $('#fileImage').change(function() {
-			 showImage(this);
+		 $(document).ready(function() {
+			 $('#fileImage').change(function() {
+				 showImageOutput(this);
+			 });
+			 
 		 });
 		 
-	 });
-	 
-	 function showImage(fileInput) {
-		 file = fileInput.files[0];
-		 reader = new FileReader();
-		 
-		 reader.onload = function (e) {
-			 $('#fileImage').attr('src', e.target.result);
+		 function showImageOutput(fileInput) {
+			 file = fileInput.files[0];
+			 reader = new FileReader();
+			 
+			 reader.onload = function (e) {
+				 $('#output').attr('src', e.target.result);
+			 };
+			 reader.readAsDataURL(file);
 		 }
-		 reader.readAsDataURL(file);
-	 }
 	</script>	
 </body>
 </html>

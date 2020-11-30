@@ -7,16 +7,16 @@
 	<link type="text/css" rel="stylesheet" href="../css/bootstrap.min.css" />
 	<link type="text/css" rel="stylesheet" href="../css/vocable.css" />
 	<link type="text/css" rel="stylesheet" href="../css/main.css" />
+	<script src ="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src ="../js/extras.js"></script>
 	<script src ="../js/upload.js"></script>
-	    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jqery.min.js"></script>
 </head>
 <body>
 	<h1>Edit Vocable</h1>
 	
     <div class="aroundField">
 		
-		<form class="add" th:object="${vocable}" th:action="@{/saveEdit}" action="#" method="get" enctype="multipart/form-data">
+		<form class="add" th:object="${vocable}" th:action="@{/save}" action="#" method="post" enctype="multipart/form-data">
 			<div class= "addid">
 				<input  type="hidden" th:field="*{id}" />
 			</div>
@@ -44,11 +44,11 @@
 			
 		  </div >
 
-	    	<img id="output" alt="Your Picture" width="200" />
+	    	<img id="output" alt="Preview" width="200" />
 		  
 		    <div class="upload">
-		        <label for="picture">Pictures: </label>
-		        <input id="fileImage" type="file" name="image" accept="image/*" />	
+		        <input id="fileImage" type="file" name="fileImage"/>
+		        <input type="hidden" th:field="*{id}"/>
 		    </div>
 		  
 		  	<br>
@@ -59,6 +59,24 @@
 			<div style="clear: both; display: block; height: 10px;"></div>
 		</form>	
 		
-	</div>  
+	</div>
+	<script type="text/javascript">
+		 $(document).ready(function() {
+			 $('#fileImage').change(function() {
+				 showImageOutput(this);
+			 });
+			 
+		 });
+		 
+		 function showImageOutput(fileInput) {
+			 file = fileInput.files[0];
+			 reader = new FileReader();
+			 
+			 reader.onload = function (e) {
+				 $('#output').attr('src', e.target.result);
+			 };
+			 reader.readAsDataURL(file);
+		 }
+	</script>	
 </body>
 </html>
