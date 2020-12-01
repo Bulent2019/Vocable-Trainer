@@ -39,7 +39,7 @@ import com.example.Project.model.Vocable;
 import com.example.Project.model.VocableRepository;
 import com.example.Project.model.SignUpForm;
 import com.example.Project.model.MyUser;
-import com.example.Project.model.UserRepository;
+import com.example.Project.model.MYUserRepository;
 
 @Controller
 public class VocableController {
@@ -51,7 +51,7 @@ public class VocableController {
 	private CategoryRepository crepo;
 	
 	@Autowired
-	private UserRepository urepo;
+	private MYUserRepository urepo;
 	
 	@Autowired
 	private PictureRepository prepo;

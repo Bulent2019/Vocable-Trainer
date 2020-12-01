@@ -38,7 +38,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.Project.model.PictureRepository;
 import com.example.Project.model.Picture;
-import com.example.Project.model.UserRepository;
+import com.example.Project.model.MYUserRepository;
 import com.example.Project.model.MyUser;
 
 @Controller
@@ -48,7 +48,7 @@ public class PictureController {
 	PictureRepository prepo;
 	
 	@Autowired
-	UserRepository urepo;
+	MYUserRepository urepo;
 	
 	@Autowired
 	private Path rootlocation;

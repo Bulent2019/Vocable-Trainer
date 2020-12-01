@@ -7,7 +7,7 @@ import javax.persistence.*;
 import com.example.Project.model.Picture;
 
 @Entity
-@Table(name = "users")   //  without => error something like, ...error near field user!!
+@Table(name = "myusers")   //  without => error something like, ...error near field user!!
 public class MyUser {
 	
 	@Id
