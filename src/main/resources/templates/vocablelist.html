@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html xmlns:th="http://www.thymeleaf.org" 
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <title>Vocables</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -53,11 +54,12 @@
 	    		<td></td>
 	    		<td th:text="${vocable.category.name}"></td>
 	    		<td></td>
-	    		
+	     		
+	    		<!-- images/3978/beer.jpg test picture copy into th:sre="@{...}" -->
 	    		<td>
-	   				<img alt="Picture" width="100" />
+	   				<img alt="Picture" th:src="@{images/4253/beer.jpg}" width="100" />
 	   			</td>
-	     	
+	   	
 	     		<td > <a  th:href="@{/edit/{id}(id=${vocable.id})}">Edit</a></td>
 	    		<td > <a id="deleteButton" class = "btn-danger" th:href="@{/delete/{id}(id=${vocable.id})}">Delete</a></td>
 	    	</tr>
