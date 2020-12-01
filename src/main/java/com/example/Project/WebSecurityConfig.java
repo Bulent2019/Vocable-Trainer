@@ -30,7 +30,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 			.anyRequest().authenticated()
 			.and()
 		.formLogin()
-			.loginPage("/login")	// without auto generated login
+//			.loginPage("/login")	// without auto generated login
 			.defaultSuccessUrl("/vocablelist", true)
 			.permitAll()
 			.and()
