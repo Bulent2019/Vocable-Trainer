@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Bean;
 
 import com.example.Project.model.Category;
 import com.example.Project.model.CategoryRepository;
-import com.example.Project.model.User;
+import com.example.Project.model.MyUser;
 import com.example.Project.model.UserRepository;
 import com.example.Project.model.Vocable;
 import com.example.Project.model.VocableRepository;
@@ -60,7 +60,7 @@ public class ProjectApplication {
 			repo.save(new Vocable("Tree", "Puu", creposit.findByName("General").get(0)));
 			repo.save(new Vocable("Teacher", "Opettaja", creposit.findByName("General").get(0)));
 
-			User one = new User("user", "$2y$10$PeuqLT07hU.SpPwTDL07reNUFSl1MJYGTCQIvBmBHVHL9.Df05CWq", "ADMIN");
+			MyUser one = new MyUser("user", "$2y$10$PeuqLT07hU.SpPwTDL07reNUFSl1MJYGTCQIvBmBHVHL9.Df05CWq", "ADMIN");
 			ureposit.save(one);
 
 			log.info("fetch all vocables");

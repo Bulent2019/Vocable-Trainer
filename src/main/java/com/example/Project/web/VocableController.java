@@ -38,7 +38,7 @@ import com.example.Project.model.PictureRepository;
 import com.example.Project.model.Vocable;
 import com.example.Project.model.VocableRepository;
 import com.example.Project.model.SignUpForm;
-import com.example.Project.model.User;
+import com.example.Project.model.MyUser;
 import com.example.Project.model.UserRepository;
 
 @Controller
@@ -78,7 +78,7 @@ public class VocableController {
 		    	BCryptPasswordEncoder bc = new BCryptPasswordEncoder();
 		    	String hashPwd = bc.encode(pwd);
 	
-		    	User newUser = new User();
+		    	MyUser newUser = new MyUser();
 		    	newUser.setPasswordHash(hashPwd);
 		    	newUser.setUsername(signupForm.getUsername());
 		    	newUser.setRole("USER");

@@ -8,7 +8,7 @@ import com.example.Project.model.Picture;
 
 @Entity
 @Table(name = "users")   //  without => error something like, ...error near field user!!
-public class User {
+public class MyUser {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,11 +28,11 @@ public class User {
 //	@OneToOne(cascade = CascadeType.ALL)
 //	private Set<Picture> pictureList;
 	
-	public User() {
+	public MyUser() {
 		
 	}
 
-	public User(String username, String passwordHash, String role) {
+	public MyUser(String username, String passwordHash, String role) {
 		super();
 		this.username = username;
 		this.passwordHash = passwordHash;
